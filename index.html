@@ -165,6 +165,17 @@
   .bot .label b{display:block;color:var(--acc);font-weight:600;font-size:10.5px}
   .bot .label .yr{display:block;font-size:10px;color:#6a6f79}
   .bot.boot svg{animation:boot .55s}
+  .bot{pointer-events:auto;cursor:help}
+  .hint{font-family:var(--mono);font-size:10px;color:var(--acc);margin-top:5px;animation:pl 1.8s infinite;transition:opacity .3s}
+  .hint.gone{opacity:0}
+  .bubble{position:absolute;right:150px;top:6px;width:265px;text-align:left;pointer-events:none;opacity:0;transform:translateX(10px) scale(.96);
+    transform-origin:right center;transition:opacity .25s,transform .25s;background:rgba(21,24,31,.97);border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px;box-shadow:0 20px 50px -20px rgba(0,0,0,.9)}
+  .bubble::after{content:"";position:absolute;right:-7px;top:26px;width:12px;height:12px;background:rgba(21,24,31,.97);
+    border-right:1px solid var(--line);border-top:1px solid var(--line);transform:rotate(45deg)}
+  .bot:hover .bubble{opacity:1;transform:none}
+  .byr{font-family:var(--mono);font-size:10.5px;color:var(--acc);letter-spacing:1px;text-transform:uppercase}
+  .bubble p{font-size:13.5px;line-height:1.5;color:var(--bone);margin-top:4px;min-height:3em}
   @keyframes boot{0%{filter:brightness(2.6) drop-shadow(0 0 8px var(--acc));transform:scale(.88)}100%{filter:none;transform:none}}
   .stage{opacity:0;transition:opacity .45s}
   .stage.on{opacity:1}
@@ -323,6 +334,8 @@
       </g>
     </svg>
     <div class="label" id="blabel"><span class="yr">2022</span><b>Intern</b>nervous &amp; curious</div>
+    <div class="hint" id="hint">hover me ✦</div>
+    <div class="bubble" id="bubble"><span class="byr" id="byr"></span><p id="btext"></p></div>
   </div>
 </div>
 
@@ -544,9 +557,21 @@ if(!RM&&matchMedia('(pointer:fine)').matches){
   const STAGES=[['2022','Intern','nervous &amp; curious'],['2023','Software Engineer I','confident · −98% cost'],
     ['2024','Software Engineer II','top 5% · SPARK award'],['2025','Software Engineer II','enters AI: retrieval'],
     ['2026','Senior Software Engineer','leads agents &amp; MCP']];
+  const STORY=[
+    "First day. Terraform, Grafana, a Next.js admin dashboard — and a lot of googling. I said yes to everything.",
+    "I owned the Stat Sig service. It polled everything, all the time — I made it poll smart. Cost dropped 98%.",
+    "Led my first project: 5 engineers, planning to delivery, on deadline. Picked for SPARK — top 5% company-wide. GCP-certified too.",
+    "Moved into AI. Our docs assistant gave shaky answers, so I rebuilt its retrieval on Vertex AI Search. The answers got right.",
+    "Promoted to Senior. Led our remote MCP server to launch — six tools that let AI agents run the product. Now: agents everywhere."];
+  const bub=document.getElementById('bubble'),byr=document.getElementById('byr'),btext=document.getElementById('btext'),hint=document.getElementById('hint');
+  let hovering=false,typer=null;
+  function tell(i){clearInterval(typer);byr.textContent=STAGES[i][0]+' · '+STAGES[i][1];const t=STORY[i];
+    if(RM){btext.textContent=t;return;}let n=0;btext.textContent='';typer=setInterval(()=>{btext.textContent=t.slice(0,++n);if(n>=t.length)clearInterval(typer);},14);}
   const bot=document.getElementById('bot'),fill=document.getElementById('fill'),ticksEl=document.getElementById('ticks'),
     label=document.getElementById('blabel'),stages=bot.querySelectorAll('.stage');
   const TOP=140;let bottom,cur=0,queued=false;
+  bot.addEventListener('mouseenter',()=>{hovering=true;hint.classList.add('gone');tell(cur);});
+  bot.addEventListener('mouseleave',()=>{hovering=false;clearInterval(typer);});
   function layout(){bottom=innerHeight-200;
     ticksEl.innerHTML=STAGES.map((s,i)=>`<div class="tick" style="top:${TOP+(bottom-TOP)*i/5}px"><span>${s[0]}</span></div>`).join('');update();}
   function update(){queued=false;
@@ -556,7 +581,7 @@ if(!RM&&matchMedia('(pointer:fine)').matches){
     ticksEl.querySelectorAll('.tick').forEach((t,i)=>(t.classList.toggle('done',i<=s),t.classList.toggle('cur',i===s)));
     if(s!==cur){stages[cur].classList.remove('on');stages[s].classList.add('on');
       label.innerHTML=`<span class="yr">${STAGES[s][0]}</span><b>${STAGES[s][1]}</b>${STAGES[s][2]}`;
-      bot.classList.remove('boot');void bot.offsetWidth;bot.classList.add('boot');cur=s;window.__stage=s;}
+      bot.classList.remove('boot');void bot.offsetWidth;bot.classList.add('boot');cur=s;window.__stage=s;if(hovering)tell(s);}
   }
   addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>30);if(!queued){queued=true;requestAnimationFrame(update);}});
   addEventListener('resize',layout);layout();
