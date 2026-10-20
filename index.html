@@ -38,6 +38,11 @@
   nav.scrolled{border-color:var(--line);background:rgba(10,11,14,.72)}
   nav .brand{font-family:var(--mono);font-weight:600;font-size:15px}
   nav .brand b{color:var(--acc)}
+  nav .brand{display:flex;align-items:center;gap:8px;cursor:default}
+  .star{width:15px;height:15px;fill:var(--acc);filter:drop-shadow(0 0 5px rgba(var(--acc-rgb),.75));animation:sp 9s linear infinite}
+  .star path{transform-box:fill-box;transform-origin:center;animation:glint 2.4s ease-in-out infinite}
+  nav .brand:hover .star{animation-duration:1.4s}
+  @keyframes glint{0%,100%{transform:scale(.78);opacity:.7}50%{transform:scale(1.12);opacity:1}}
   nav .links{display:flex;gap:22px;font-size:13px;font-family:var(--mono);color:var(--muted)}
   nav .links a{transition:color .2s}
   nav .links a:hover{color:var(--bone)}
@@ -322,7 +327,7 @@
 </div>
 
 <nav id="nav">
-  <div class="brand">zahid<b>.</b>sarker</div>
+  <div class="brand" title="Top 5% performer · SPARK award"><span>zahid<b>.</b>sarker</span><svg class="star" viewBox="-5 -5 10 10" aria-hidden="true"><path d="M0 -4.6 L1.15 -1.15 L4.6 0 L1.15 1.15 L0 4.6 L-1.15 1.15 L-4.6 0 L-1.15 -1.15 Z"/></svg></div>
   <div class="links">
     <a href="#experience" class="navlink">experience</a>
     <a href="#projects" class="navlink">projects</a>
