@@ -145,19 +145,20 @@
   footer{text-align:center;padding:34px 24px;border-top:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-size:12px}
 
   /* JOURNEY RAIL — human → engineer → AI builder, evolving as you scroll */
-  .rail{position:fixed;right:20px;top:0;bottom:0;width:150px;z-index:2;pointer-events:none}
-  .rail .track{position:absolute;left:75px;top:140px;bottom:200px;width:1px;background:var(--line)}
-  .rail .fill{position:absolute;left:75px;top:140px;width:1px;height:0;background:var(--acc);box-shadow:0 0 8px var(--acc)}
-  .tick{position:absolute;left:75px;transform:translate(-50%,-50%)}
+  .rail{position:fixed;right:16px;top:0;bottom:0;width:170px;z-index:2;pointer-events:none}
+  .rail .track{position:absolute;left:85px;top:140px;bottom:200px;width:1px;background:var(--line)}
+  .rail .fill{position:absolute;left:85px;top:140px;width:1px;height:0;background:var(--acc);box-shadow:0 0 8px var(--acc)}
+  .tick{position:absolute;left:85px;transform:translate(-50%,-50%)}
   .tick::before{content:"";display:block;width:7px;height:7px;border-radius:50%;background:var(--ink);border:1px solid #3a404c;transition:.3s}
   .tick span{position:absolute;left:12px;top:-4px;font-family:var(--mono);font-size:10px;color:#4e535d;transition:.3s}
   .tick.done::before{border-color:var(--acc);background:var(--acc-dim)}
   .tick.done span{color:var(--acc)}
   .tick.cur span{opacity:0}
-  .bot{position:absolute;left:75px;top:78px;width:148px;transform:translateX(-50%);text-align:center}
+  .bot{position:absolute;left:85px;top:78px;width:168px;transform:translateX(-50%);text-align:center}
   .bot svg{width:150px;height:125px;overflow:visible}
   .bot .label{font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.35;margin-top:4px;background:rgba(10,11,14,.94);border-radius:6px;padding:3px 4px}
-  .bot .label b{display:block;color:var(--acc);font-weight:600;font-size:11px}
+  .bot .label b{display:block;color:var(--acc);font-weight:600;font-size:10.5px}
+  .bot .label .yr{display:block;font-size:10px;color:#6a6f79}
   .bot.boot svg{animation:boot .55s}
   @keyframes boot{0%{filter:brightness(2.6) drop-shadow(0 0 8px var(--acc));transform:scale(.88)}100%{filter:none;transform:none}}
   .stage{opacity:0;transition:opacity .45s}
@@ -212,7 +213,7 @@
   @keyframes tr{0%,84%,100%{transform:translate(0,0)}86%,90%,94%{transform:translate(-.7px,0)}88%,92%{transform:translate(.7px,0)}}
   @keyframes dp{0%{transform:translateY(0);opacity:0}20%{opacity:1}80%{transform:translateY(6px);opacity:1}100%{transform:translateY(8px);opacity:0}}
   @keyframes twk{0%,100%{transform:scale(.4);opacity:.3}50%{transform:scale(1.15);opacity:1}}
-  @media(max-width:1360px){.rail{display:none}}
+  @media(max-width:1400px){.rail{display:none}}
 
 
   @media(prefers-reduced-motion:reduce){
@@ -316,7 +317,7 @@
           <rect x="72" y="74" width="12" height="11" rx="2" class="shell"/></g>
       </g>
     </svg>
-    <div class="label" id="blabel"><b>2022 · Intern</b>nervous &amp; curious</div>
+    <div class="label" id="blabel"><span class="yr">2022</span><b>Intern</b>nervous &amp; curious</div>
   </div>
 </div>
 
@@ -363,7 +364,7 @@
       <div class="role">Senior Software Engineer · Optimizely</div>
       <div class="meta">1,500-person global software company · May 2022 – present · promoted to Senior 2026</div>
       <div class="tiles">
-        <div class="tile"><div class="v">GA</div><div class="l">Led a remote MCP server to general availability</div></div>
+        <div class="tile"><div class="v">MCP server</div><div class="l">Led it from design to general availability (launch)</div></div>
         <div class="tile"><div class="v">6</div><div class="l">MCP tools letting AI agents drive the product API</div></div>
         <div class="tile"><div class="v">~90%</div><div class="l">API coverage — full CRUD agent toolset + E2E tests</div></div>
         <div class="tile"><div class="v">−98%</div><div class="l">Production service cost, via adaptive polling</div></div>
@@ -535,8 +536,9 @@ if(!RM&&matchMedia('(pointer:fine)').matches){
 
 /* ---------- journey rail: human → engineer → AI builder as you scroll ---------- */
 (function(){
-  const STAGES=[['2022','Intern','nervous &amp; curious'],['2023','Engineer','confident · −98% cost'],
-    ['2024','Engineer II','top 5% · SPARK award'],['2025','AI','enters AI: retrieval'],['2026','Senior','agents & MCP → GA']];
+  const STAGES=[['2022','Intern','nervous &amp; curious'],['2023','Software Engineer I','confident · −98% cost'],
+    ['2024','Software Engineer II','top 5% · SPARK award'],['2025','Software Engineer II','enters AI: retrieval'],
+    ['2026','Senior Software Engineer','leads agents &amp; MCP']];
   const bot=document.getElementById('bot'),fill=document.getElementById('fill'),ticksEl=document.getElementById('ticks'),
     label=document.getElementById('blabel'),stages=bot.querySelectorAll('.stage');
   const TOP=140;let bottom,cur=0,queued=false;
@@ -548,7 +550,7 @@ if(!RM&&matchMedia('(pointer:fine)').matches){
     const s=Math.min(4,Math.floor(p*5));
     ticksEl.querySelectorAll('.tick').forEach((t,i)=>(t.classList.toggle('done',i<=s),t.classList.toggle('cur',i===s)));
     if(s!==cur){stages[cur].classList.remove('on');stages[s].classList.add('on');
-      label.innerHTML=`<b>${STAGES[s][0]} · ${STAGES[s][1]}</b>${STAGES[s][2]}`;
+      label.innerHTML=`<span class="yr">${STAGES[s][0]}</span><b>${STAGES[s][1]}</b>${STAGES[s][2]}`;
       bot.classList.remove('boot');void bot.offsetWidth;bot.classList.add('boot');cur=s;window.__stage=s;}
   }
   addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>30);if(!queued){queued=true;requestAnimationFrame(update);}});
