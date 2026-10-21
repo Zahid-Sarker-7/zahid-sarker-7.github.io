@@ -6,6 +6,7 @@
 <title>Zahid Sarker — Full-Stack &amp; AI Engineer</title>
 <meta name="description" content="Senior full-stack & AI engineer at Optimizely — production RAG, LLM agents, and MCP.">
 <script>document.documentElement.classList.add('js')</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="09165f1a-1e50-4a9a-b611-94bc48c0a313"></script>
 <style>
   :root{
     --ink:#0a0b0e; --surface:#15181f; --line:#23262f;
@@ -344,9 +345,9 @@
   <div class="links">
     <a href="#experience" class="navlink">experience</a>
     <a href="#projects" class="navlink">projects</a>
-    <a href="Zahid_Sarker_Resume.pdf" target="_blank" rel="noopener" class="navlink">résumé ↗</a>
+    <a href="Zahid_Sarker_Resume.pdf" target="_blank" rel="noopener" class="navlink" data-umami-event="resume-nav">résumé ↗</a>
     <a href="#contact" class="navlink">contact</a>
-    <a href="mailto:zahid.sarker111@gmail.com" class="say">say hello →</a>
+    <a href="mailto:zahid.sarker111@gmail.com" class="say" data-umami-event="email-nav">say hello →</a>
   </div>
 </nav>
 
@@ -404,7 +405,7 @@
   <div class="proj reveal" data-tilt>
     <div class="top">
       <h3>Askable <span class="tag">RAG engine</span></h3>
-      <a class="repo" href="https://github.com/Zahid-Sarker-7/askable" target="_blank" rel="noopener">github.com/…/askable ↗</a>
+      <a class="repo" data-umami-event="repo-askable" href="https://github.com/Zahid-Sarker-7/askable" target="_blank" rel="noopener">github.com/…/askable ↗</a>
     </div>
     <p class="lead">Answers only from your documents — with citations — and refuses to guess.</p>
     <div class="flow">
@@ -421,7 +422,7 @@
   <div class="proj reveal" data-tilt>
     <div class="top">
       <h3>Converse <span class="tag">multi-agent LLM engine</span></h3>
-      <a class="repo" href="https://github.com/Zahid-Sarker-7/converse" target="_blank" rel="noopener">github.com/…/converse ↗</a>
+      <a class="repo" data-umami-event="repo-converse" href="https://github.com/Zahid-Sarker-7/converse" target="_blank" rel="noopener">github.com/…/converse ↗</a>
     </div>
     <p class="lead">A team of agents runs a role-play; an LLM-judge scores it with quoted evidence.</p>
     <div class="flow">
@@ -446,10 +447,10 @@
   <h2>Let's work together</h2>
   <p>Building something with AI? Tell me where it's stuck.</p>
   <div class="cta">
-    <a class="btn primary" href="mailto:zahid.sarker111@gmail.com">✉ zahid.sarker111@gmail.com</a>
-    <a class="btn" href="Zahid_Sarker_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF) ↗</a>
-    <a class="btn" href="https://linkedin.com/in/zahid-sarker7" target="_blank" rel="noopener">LinkedIn ↗</a>
-    <a class="btn" href="https://github.com/Zahid-Sarker-7" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn primary" href="mailto:zahid.sarker111@gmail.com" data-umami-event="email-contact">✉ zahid.sarker111@gmail.com</a>
+    <a class="btn" href="Zahid_Sarker_Resume.pdf" target="_blank" rel="noopener" data-umami-event="resume-contact">Résumé (PDF) ↗</a>
+    <a class="btn" href="https://linkedin.com/in/zahid-sarker7" target="_blank" rel="noopener" data-umami-event="linkedin">LinkedIn ↗</a>
+    <a class="btn" href="https://github.com/Zahid-Sarker-7" target="_blank" rel="noopener" data-umami-event="github">GitHub ↗</a>
   </div>
 </div></section>
 </main>
@@ -521,6 +522,7 @@ function run(query){
   const [score,idx]=bm25(query), hit=score>.6?KB[idx]:null;
   const shown=(tok(query).join(' ')||query.trim()).slice(0,40);
   const text=hit?hit.a:MISS[miss++%MISS.length](shown);
+  window.umami?.track('console-ask',{topic:hit?hit.k.split(' ')[0]:'no-match'});
   const q=document.createElement('div');q.className='q';q.textContent=query;logEl.appendChild(q);
   const a=document.createElement('div');a.className='a';logEl.appendChild(a);
   const finish=()=>{const src=document.createElement('div');src.className='src';
@@ -570,7 +572,7 @@ if(!RM&&matchMedia('(pointer:fine)').matches){
   const bot=document.getElementById('bot'),fill=document.getElementById('fill'),ticksEl=document.getElementById('ticks'),
     label=document.getElementById('blabel'),stages=bot.querySelectorAll('.stage');
   const TOP=140;let bottom,cur=0,queued=false;
-  bot.addEventListener('mouseenter',()=>{hovering=true;hint.classList.add('gone');tell(cur);});
+  bot.addEventListener('mouseenter',()=>{hovering=true;hint.classList.add('gone');tell(cur);window.umami?.track('robot-story',{year:STAGES[cur][0]});});
   bot.addEventListener('mouseleave',()=>{hovering=false;clearInterval(typer);});
   function layout(){bottom=innerHeight-200;
     ticksEl.innerHTML=STAGES.map((s,i)=>`<div class="tick" style="top:${TOP+(bottom-TOP)*i/5}px"><span>${s[0]}</span></div>`).join('');update();}
