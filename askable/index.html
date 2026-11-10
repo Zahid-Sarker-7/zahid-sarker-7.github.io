@@ -140,8 +140,8 @@
     <article class="bug">
       <div class="id"><span class="k">Problem 02</span><b>A guardrail that failed silently</b></div>
       <dl><dt>Looked like</dt><dd class="guess miss">Every answer passing the faithfulness check</dd>
-        <dt>Actually</dt><dd>While preparing this page, the logs showed the judge's model had also been retired. The check is built to fail open, so that a judge outage never blocks answers, and that same design hid a permanent failure.</dd>
-        <dt>Status</dt><dd>Open. The fix is a current model plus a health check that reports the judge as down, rather than treating "unavailable" as "faithful".</dd></dl>
+        <dt>Actually</dt><dd>While preparing this page, the logs showed the judge's model had also been retired. The check was built to fail open, so that a judge outage never blocks answers, and that same design hid a permanent failure.</dd>
+        <dt>Fix</dt><dd>The judge now runs on a live model, and a failed or unparsable check returns "unknown" instead of "faithful", so the UI says "couldn't verify". Two regression tests pin it: unparsable output and judge errors can never score as faithful.</dd></dl>
     </article>
     <article class="bug">
       <div class="id"><span class="k">Problem 03</span><b>Reading precision 0.52 honestly</b></div>

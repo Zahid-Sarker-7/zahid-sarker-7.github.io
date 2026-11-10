@@ -42,7 +42,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="cx" aria-hidden="true"></div><div class="cy" aria-hidden="true"></div><div class="coord" aria-hidden="true">X 0000 · Y 0000</div>
 <div class="wrap">
-<nav aria-label="Main"><span>ZS · Rev 2026.11</span><span><a class="hide" href="#experience">Experience</a><a class="hide" href="#projects">Projects</a><a class="hide" href="#skills">Background</a><a href="Zahid_Sarker_Resume.pdf" target="_blank" rel="noopener" data-umami-event="resume-nav">Résumé ↗</a></span></nav>
+<nav aria-label="Main"><span>ZS · Rev 2026.11</span><span><a class="hide" href="#experience">Experience</a><a class="hide" href="#ai">How I work</a><a class="hide" href="#projects">Projects</a><a class="hide" href="#skills">Background</a><a href="Zahid_Sarker_Resume.pdf" target="_blank" rel="noopener" data-umami-event="resume-nav">Résumé ↗</a></span></nav>
 
 <main id="main">
 <header class="hero">
@@ -99,15 +99,26 @@
   <div class="cards stagger">
     <article class="card"><span class="no">01 · AI AGENTS</span><h3>Led a remote MCP server to general availability</h3><p>External AI agents can operate the product through its REST APIs. I built 6 MCP tools, with audit logging, Datadog observability, and RFC 9728 OAuth discovery.</p></article>
     <article class="card"><span class="no">02 · RAG</span><h3>Re-architected documentation search on Vertex AI Search</h3><p>It replaced an unreliable prior system behind the company's entire public documentation, with a significant gain in accuracy and relevance.</p></article>
-    <article class="card"><span class="no">03 · OWNERSHIP</span><h3>Took over a stalled agent toolset and shipped full CRUD</h3><p>The effort had stalled for two quarters. I delivered create and update across every entity type, about 90% of the experimentation API, with 200+ end-to-end functional tests.</p></article>
+    <article class="card"><span class="no">03 · OWNERSHIP</span><h3>Owned the agent toolset end to end and shipped full CRUD</h3><p>Create and update across every entity type, about 90% of the experimentation API, backed by 200+ end-to-end functional tests so other teams can contribute safely.</p></article>
     <article class="card"><span class="no">04 · CROSS-TEAM</span><h3>MCP audit logging across 3 teams</h3><p>Coordinated across the API, backend, and frontend teams. I also built user-level role authorization for the AI assistant across 3 products.</p></article>
     <article class="card"><span class="no">05 · EFFICIENCY</span><span class="big"><span data-count="98">98</span>%</span><h3>cost cut on a production service</h3><p>Replaced brute-force polling with adaptive, tiered workload reduction.</p></article>
     <article class="card"><span class="no">06 · PEOPLE</span><h3>Mentor, interviewer, top 5% performer</h3><p>I mentor junior engineers, conduct technical hiring interviews, and received the SPARK award for the top 5% of performers.</p></article>
   </div>
 </section>
 
+<section id="ai" aria-labelledby="ai-h">
+  <div class="sec rv"><h2 id="ai-h"><small>02 · How I work</small>Fast with AI. Strict about what ships.</h2><span class="k">Claude Code · Copilot · Cursor</span></div>
+  <p class="prose rv" style="margin-bottom:30px">I ship with AI coding agents every day, and I build tools for them: the MCP server at work exists so agents can operate a product safely. The speed is real. Deciding what's correct stays my job.</p>
+  <div class="cards ai stagger">
+    <article class="card"><span class="no">01 · DESIGN</span><h3>I set the boundaries; agents fill them in</h3><p>Ports, data model, and failure modes are decided up front, so generated code lands inside a design instead of becoming one. Converse swaps LLM, STT, and TTS vendors by config for that reason.</p></article>
+    <article class="card"><span class="no">02 · TESTS</span><h3>Tests define done, not the diff</h3><p>Converse ships with 33 backend tests plus a real-browser E2E with a fake mic. At work, 200+ end-to-end tests guard the agent toolset. A fix without a test isn't finished.</p></article>
+    <article class="card"><span class="no">03 · REPRODUCE</span><h3>No fix is accepted without a repro</h3><p>Every live voice bug was reproduced first. When an AI-proposed turn-detection fix failed the recorded-speech test, the test won and the fix was redone.</p></article>
+    <article class="card"><span class="no">04 · VERIFY</span><h3>I check the live docs and overrule when it's wrong</h3><p>Twice an AI review tried to move my Gemini adapter onto the legacy API. The live docs and the installed SDK confirmed my Interactions API code was the current surface, so it stayed, with the reasoning logged.</p></article>
+  </div>
+</section>
+
 <section id="projects" aria-labelledby="proj-h">
-  <div class="sec rv"><h2 id="proj-h"><small>02 · Independent builds</small>Case studies</h2><span class="k">open source</span></div>
+  <div class="sec rv"><h2 id="proj-h"><small>03 · Independent builds</small>Case studies</h2><span class="k">open source</span></div>
   <article class="sheet rv">
     <div class="img"><a href="converse/"><img src="img/converse-voice-session.jpg" width="1600" height="1011" alt="Converse voice session: chat transcript between the learner and an AI interviewer, with Talk and End controls" loading="lazy"></a></div>
     <div class="body">
@@ -134,7 +145,7 @@
 
 <section id="skills" class="creds" aria-label="Background and stack">
   <div class="rv">
-    <div class="sec"><h2><small>03 · Credentials</small>Background</h2></div>
+    <div class="sec"><h2><small>04 · Credentials</small>Background</h2></div>
     <ul class="list">
       <li><b>B.Sc. Computer Science &amp; Engineering</b><span>BRAC University · CGPA 3.87/4.00</span></li>
       <li><b>Merit scholarship</b><span>8 consecutive semesters</span></li>
