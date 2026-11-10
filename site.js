@@ -32,6 +32,13 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.rv,.stagger,.ladder,.bug,svg.dia').forEach(function (el) { io.observe(el); });
 
+  // Liquid-glass specular highlight follows the pointer across each panel.
+  addEventListener('pointermove', function (e) {
+    var g = e.target.closest && e.target.closest('.glass'); if (!g) return;
+    var r = g.getBoundingClientRect();
+    g.style.setProperty('--mx', (e.clientX - r.left) + 'px'); g.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+
   // Blueprint crosshair + coordinate readout (CSS shows it only for fine pointers).
   var cx = document.querySelector('.cx'), cy = document.querySelector('.cy'), co = document.querySelector('.coord');
   if (cx) addEventListener('pointermove', function (e) {
