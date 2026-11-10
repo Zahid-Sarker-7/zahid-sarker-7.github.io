@@ -5,11 +5,53 @@
   document.querySelectorAll('[data-yrs]').forEach(function (e) { e.textContent = (Math.floor(y * 2) / 2).toFixed(1); });
 
   var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Career journey: the character evolves rung by rung. Autoplays once when seen, then
+  // every step is hover/click/focus-able. Stays interactive under reduced motion (no autoplay).
+  var J = document.getElementById('journey');
+  if (J) {
+    var TITLES = [['2022', 'Intern'], ['2022', 'Software Engineer I'], ['2024', 'Software Engineer II'],
+      ['2025', 'Software Engineer II · into AI'], ['2026', 'Senior Software Engineer']];
+    var STORY = [
+      'First day: Terraform, Grafana, a Next.js admin dashboard, and a lot of reading. I said yes to everything.',
+      'I owned a production service that polled everything, all the time. I made it poll smart, and its cost dropped 98%.',
+      'I led my first project from planning to delivery, on deadline. I was picked for SPARK (top 5% company-wide) and got GCP-certified.',
+      'I moved into AI. The docs assistant gave shaky answers, so I rebuilt its retrieval on Vertex AI Search.',
+      'Promoted to Senior. I led our remote MCP server to general availability: tools that let AI agents operate the product, with audit logging and observability built in.'];
+    var figs = J.querySelectorAll('.r-stage'), rungs = J.querySelectorAll('.rung'), lad = J.querySelector('.ladder'),
+      bot = J.querySelector('.jbot'), yr = document.getElementById('jyr'), ti = document.getElementById('jtitle'),
+      story = document.getElementById('jstory'), cur = 4, timer = null;
+    var show = function (i, byUser) {
+      if (byUser) clearInterval(timer);
+      figs[cur].classList.remove('r-on'); figs[i].classList.add('r-on');
+      rungs.forEach(function (r, k) { r.classList.toggle('done', k <= i); r.classList.toggle('cur', k === i); });
+      lad.style.setProperty('--p', i / 4);
+      yr.textContent = TITLES[i][0]; ti.textContent = TITLES[i][1]; story.textContent = STORY[i];
+      if (i !== cur && !still) { bot.classList.remove('boot'); void bot.offsetWidth; bot.classList.add('boot'); }
+      cur = i;
+    };
+    rungs.forEach(function (r, k) {
+      var b = r.querySelector('button');
+      b.addEventListener('mouseenter', function () { show(k, true); });
+      b.addEventListener('focus', function () { show(k, true); });
+      b.addEventListener('click', function () { show(k, true); if (window.umami) umami.track('robot-story', { year: TITLES[k][0] }); });
+    });
+    show(4);
+    if (!still && 'IntersectionObserver' in window) {
+      var jo = new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) return; jo.disconnect();
+        var i = 0; show(0);
+        timer = setInterval(function () { if (++i > 4) return clearInterval(timer); show(i); }, 1700);
+      }, { threshold: 0.4 });
+      jo.observe(J);
+    }
+  }
+
   var dias = document.querySelectorAll('svg.dia');
   if (still || !('IntersectionObserver' in window)) {
     document.querySelectorAll('.pkt').forEach(function (p) { p.remove(); });
     dias.forEach(function (d) { d.classList.add('go'); });
-    document.querySelectorAll('.rv,.stagger,.ladder,.bug').forEach(function (e) { e.classList.add('in'); });
+    document.querySelectorAll('.rv,.stagger,.bug').forEach(function (e) { e.classList.add('in'); });
     return;
   }
 
@@ -30,7 +72,7 @@
       el.querySelectorAll('[data-count]').forEach(countUp);
     });
   }, { threshold: 0.15 });
-  document.querySelectorAll('.rv,.stagger,.ladder,.bug,svg.dia').forEach(function (el) { io.observe(el); });
+  document.querySelectorAll('.rv,.stagger,.bug,svg.dia').forEach(function (el) { io.observe(el); });
 
   // Liquid-glass specular highlight follows the pointer across each panel.
   addEventListener('pointermove', function (e) {
