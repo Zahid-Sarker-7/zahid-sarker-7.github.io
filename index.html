@@ -76,7 +76,10 @@
     <circle class="pkt" r="3.5"><animateMotion dur="2.4s" begin=".6s" repeatCount="indefinite"><mpath href="#e2"/></animateMotion></circle>
     <circle class="pkt" r="3" opacity=".6"><animateMotion dur="3s" begin=".3s" repeatCount="indefinite"><mpath href="#e3"/></animateMotion></circle>
     <circle class="pkt" r="3" opacity=".6"><animateMotion dur="3s" begin=".9s" repeatCount="indefinite"><mpath href="#e4"/></animateMotion></circle>
-    <text class="sm" x="280" y="432" text-anchor="middle">fig. 1: ── production at Optimizely  ╌╌ independent builds</text>
+    <g class="legend-key" aria-hidden="true">
+      <line x1="92" y1="428" x2="122" y2="428" stroke="rgba(238,245,255,.85)" stroke-width="1.6"/><text class="sm" x="130" y="432">production at Optimizely</text>
+      <line x1="320" y1="428" x2="350" y2="428" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="6 5"/><text class="sm" x="358" y="432">independent builds</text>
+    </g>
   </svg>
   </div>
 </header>
@@ -85,7 +88,7 @@
   <div class="glass lift"><strong><span data-yrs>4.5</span> yrs</strong><span>at Optimizely, since May 2022</span></div>
   <div class="glass lift"><strong>Top <span data-count="5">5</span>%</strong><span>of performers (SPARK award)</span></div>
   <div class="glass lift"><strong><span data-count="98">98</span>%</strong><span>cost cut on a production service</span></div>
-  <div class="glass lift"><strong><span data-count="200">200</span>+</strong><span>end-to-end tests on the agent toolset</span></div>
+  <div class="glass lift"><strong><span data-count="200">200</span>+</strong><span>end-to-end tests on the CRUD toolset</span></div>
 </div>
 
 <section id="experience" aria-labelledby="exp-h">
@@ -192,9 +195,9 @@
   </div>
 
   <div class="cards stagger">
-    <article class="card glass lift"><span class="no">01 · AI AGENTS</span><h3>Led a remote MCP server to GA</h3><ul class="pts"><li>External AI agents operate the product via its REST APIs</li><li>Built 6 MCP tools</li><li>Audit logging + Datadog observability</li><li>RFC 9728 OAuth discovery</li></ul></article>
+    <article class="card glass lift"><span class="no">01 · AI AGENTS</span><h3>Led a remote MCP server to GA</h3><ul class="pts"><li>External AI agents operate the product via its REST APIs</li><li>Built 6 MCP tools covering the most important API functionality</li><li>Audit logging + Datadog observability</li><li>RFC 9728 OAuth discovery</li></ul></article>
     <article class="card glass lift"><span class="no">02 · RAG</span><h3>Re-architected docs search on Vertex AI Search</h3><ul class="pts"><li>Powers the company's entire public documentation</li><li>Replaced an unreliable prior system</li><li>Significant gain in accuracy and relevance</li></ul></article>
-    <article class="card glass lift"><span class="no">03 · OWNERSHIP</span><h3>Owned the agent toolset end to end</h3><ul class="pts"><li>Full CRUD across every entity type</li><li>~90% of the experimentation API</li><li>200+ end-to-end functional tests</li></ul></article>
+    <article class="card glass lift"><span class="no">03 · OWNERSHIP</span><h3>Owned the experimentation CRUD toolset end to end</h3><ul class="pts"><li>Full CRUD across every entity type</li><li>~90% of the experimentation API</li><li>200+ end-to-end functional tests</li></ul></article>
     <article class="card glass lift"><span class="no">04 · CROSS-TEAM</span><h3>MCP audit logging across 3 teams</h3><ul class="pts"><li>API, backend, and frontend in one feature</li><li>User-level role authorization for the AI assistant</li><li>Rolled out across 3 products</li></ul></article>
     <article class="card glass lift"><span class="no">05 · EFFICIENCY</span><span class="big"><span data-count="98">98</span>%</span><h3>cost cut on a production service</h3><ul class="pts"><li>Replaced brute-force polling</li><li>Adaptive, tiered workload reduction</li></ul></article>
     <article class="card glass lift"><span class="no">06 · PEOPLE</span><h3>Mentor, interviewer, top 5%</h3><ul class="pts"><li>Mentor junior engineers</li><li>Run technical hiring interviews</li><li>SPARK award: top 5% of performers</li></ul></article>
@@ -206,7 +209,7 @@
   <p class="intro rv">I ship with AI coding agents daily, and I build tools for them. The speed is theirs; the judgment stays mine.</p>
   <div class="cards ai stagger">
     <article class="card glass lift"><span class="no">01 · DESIGN</span><h3>I set the boundaries; agents fill them in</h3><ul class="pts"><li>Ports, data model, failure modes decided first</li><li>Generated code lands inside a design</li><li>Converse swaps LLM, STT, TTS vendors by config</li></ul></article>
-    <article class="card glass lift"><span class="no">02 · TESTS</span><h3>Tests define done</h3><ul class="pts"><li>Converse: 33 backend tests + browser E2E</li><li>At work: 200+ E2E tests on the agent toolset</li><li>No fix ships without a test</li></ul></article>
+    <article class="card glass lift"><span class="no">02 · TESTS</span><h3>Tests define done</h3><ul class="pts"><li>Converse: 33 backend tests + browser E2E</li><li>At work: 200+ E2E tests on the CRUD toolset</li><li>No fix ships without a test</li></ul></article>
     <article class="card glass lift"><span class="no">03 · REPRODUCE</span><h3>No fix without a repro</h3><ul class="pts"><li>Every live voice bug reproduced first</li><li>An AI-proposed fix failed the speech test, so it was redone</li></ul></article>
     <article class="card glass lift"><span class="no">04 · VERIFY</span><h3>Overrule the AI when it's wrong</h3><ul class="pts"><li>An AI review twice pushed Gemini's legacy API</li><li>Live docs + installed SDK confirmed my code</li><li>Kept it, and logged why</li></ul></article>
   </div>
