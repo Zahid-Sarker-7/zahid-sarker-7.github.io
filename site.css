@@ -238,7 +238,7 @@ section{padding:100px 0 30px}
 .list{list-style:none;padding:0}
 .list li{padding:14px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:16px}
 .list li b{font-weight:600}
-.list li span{font:13px var(--mono);color:var(--muted);text-align:right}
+.list li span{font:13px var(--mono);color:var(--muted);text-align:right;white-space:nowrap;line-height:1.7}
 .list.glass{padding:4px 22px}
 .list.glass li:last-child{border-bottom:0}
 
