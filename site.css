@@ -239,6 +239,8 @@ section{padding:100px 0 30px}
 .list li{padding:14px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:16px}
 .list li b{font-weight:600}
 .list li span{font:13px var(--mono);color:var(--muted);text-align:right}
+.list.glass{padding:4px 22px}
+.list.glass li:last-child{border-bottom:0}
 
 /* case study pages */
 .meta{display:grid;grid-template-columns:repeat(4,1fr);margin-top:34px;overflow:hidden}
@@ -358,6 +360,8 @@ footer .links a:hover{color:var(--acc)}
   .t td{border:0;padding:6px 16px}
   .t td[data-k]::before{content:attr(data-k);display:block;font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
   .pager{grid-template-columns:1fr}
+  .list li{flex-direction:column;gap:2px}
+  .list li span{text-align:left}
   .pager a+a{text-align:left}
   footer .links a{margin:0 16px 0 0}
   .bg i{opacity:.2}
